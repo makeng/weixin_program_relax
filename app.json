@@ -1,12 +1,40 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/funny_mix/funny_mix",
+    "pages/funny_joke/funny_joke"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "轻松一哈",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#aaa",
+    "fontSize": "15px",
+    "selectedColor": "#1AAD19",
+    "borderStyle": "#ccc",
+    "backgroundColor": "#fcfcfc",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "搞笑gif",
+        "iconPath": "img/icon_gif.png",
+        "selectedIconPath": "img/icon_gif_active.png"
+      },
+      {
+        "pagePath": "pages/funny_mix/funny_mix",
+        "text": "欢乐图文",
+        "iconPath": "img/icon_mix.png",
+        "selectedIconPath": "img/icon_mix_active.png"
+      },
+      {
+        "pagePath": "pages/funny_joke/funny_joke",
+        "text": "精品笑话",
+        "iconPath": "img/icon_joke.png",
+        "selectedIconPath": "img/icon_joke_active.png"
+      }
+    ]
   }
 }
