@@ -1,3 +1,15 @@
 <view class="page">
-
+    <view class="page__bd">
+        <view class="weui-cells__title">欢乐一刻</view>
+        <view class="weui-cells weui-cells_after-title">
+            <!--图片列表-->
+            <view class="article"  wx:for="{{articleList}}" wx:key="*this">
+                <view class="weui-cell__bd article_title">
+                    <image src="../../img/icon_cry.png"></image>
+                    {{item.title}}
+                </view>
+                <view class="article_gif"><image src="{{item.img}}"></image></view>
+            </view>
+        </view>
+    </view>
 </view>
