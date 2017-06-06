@@ -7,7 +7,7 @@ var AppSecret = '4ed24e44e74b9c3b4025e3daeca3e70c';
 
 Page({
     data: {
- 
+
     },
     onLoad: function () {
         app.getUserInfo(function (data) {
