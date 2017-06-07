@@ -1,8 +1,8 @@
 {
   "pages":[
-    "pages/funny_mix/funny_mix",
+    "pages/funny_img/funny_img",
     "pages/funny_gif/funny_gif",
-    "pages/funny_joke/funny_joke"
+    "pages/talking_bot/talking_bot"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -18,22 +18,22 @@
     "backgroundColor": "#fcfcfc",
     "list": [
       {
-        "pagePath": "pages/funny_mix/funny_mix",
-        "text": "欢乐图文",
-        "iconPath": "img/icon_mix.png",
-        "selectedIconPath": "img/icon_mix_active.png"
+        "pagePath": "pages/funny_img/funny_img",
+        "text": "搞笑图片",
+        "iconPath": "img/icon_img.png",
+        "selectedIconPath": "img/icon_img_active.png"
       },
       {
         "pagePath": "pages/funny_gif/funny_gif",
-        "text": "搞笑gif",
+        "text": "搞笑动态图",
         "iconPath": "img/icon_gif.png",
         "selectedIconPath": "img/icon_gif_active.png"
       },
       {
-        "pagePath": "pages/funny_joke/funny_joke",
-        "text": "精品笑话",
-        "iconPath": "img/icon_joke.png",
-        "selectedIconPath": "img/icon_joke_active.png"
+        "pagePath": "pages/talking_bot/talking_bot",
+        "text": "聊天机器人",
+        "iconPath": "img/icon_bot.png",
+        "selectedIconPath": "img/icon_bot_active.png"
       }
     ]
   }

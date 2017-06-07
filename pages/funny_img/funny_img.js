@@ -9,8 +9,8 @@ Page({
 
     onLoad: function () {
         var that = this;
-        wx.request({    //获取搞笑gif
-            url: app.globalData.api.showApi.path.gif,
+        wx.request({    //获取搞笑图文
+            url: app.globalData.api.showApi.path.mix,
             data: {
                 showapi_appid: app.globalData.api.showApi.appId,
                 showapi_sign: app.globalData.api.showApi.sign,
@@ -18,6 +18,7 @@ Page({
                 maxResult: 10
             },
             success: function (data) {
+                console.log( data.data.showapi_res_body.contentlist );
                 that.setData({
                     articleList: data.data.showapi_res_body.contentlist
                 });
