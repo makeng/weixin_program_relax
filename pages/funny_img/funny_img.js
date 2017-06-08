@@ -18,7 +18,6 @@ Page({
                 maxResult: 10
             },
             success: function (data) {
-                console.log( data.data.showapi_res_body.contentlist );
                 that.setData({
                     articleList: data.data.showapi_res_body.contentlist
                 });

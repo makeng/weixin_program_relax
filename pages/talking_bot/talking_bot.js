@@ -4,16 +4,14 @@ var app = getApp();
 
 Page({
     data: {
-        talk: [     //聊天信息
-            {
-                isBot: false,
-                sentence: '你好'
-            },
-            {
-                isBot: true,    //语句是否属于机器人
-                sentence: '你好，我是聪明的图灵聊天机器人'
-            }
-        ],
+        talk: [{
+            isBot: true,
+            sentence: '你好，我是聊天图灵机器人，我很聪明哦，你想要和我聊点什么呢？'
+        }],
+        sendText: '',   //发送的语句
+        c: '',   //发送语句的input值
+        isSendMsgBtnDisabled: true, //发送按钮禁止
+        scrollTop: 0,   //滚动位置
         userHead: ''    //用户头像
     },
 
@@ -21,19 +19,16 @@ Page({
         var that = this;
         //加载用户头像
         app.getUserInfo(function (data) {
-            console.log(data);
             that.setData({
                 userHead: data.avatarUrl
             })
         });
-
     },
 
     /*  给聊天机器人发送聊天
      *   @param info聊天语句 id对应用户
      * */
-    talkToBot: function (info, userid) {
-        var that = this;
+    talkToBot: function (info, userid, cb) {
         wx.request({    //发送给机器人的聊天
             url: app.globalData.api.showApi.path.bot,
             data: {
@@ -43,15 +38,79 @@ Page({
                 userid: userid
             },
             success: function (data) {
-                var text = data.data.showapi_res_body.text;
-                that.setData({
-                    talk: that.data.talk.unshift(text)    //压入话语
-                });
+                cb && cb(data);
             }
         });
     },
 
-    tabClick: function (e) {
+    /*  键盘输入事件
+     * */
+    bindKeyInput: function (e) {
+        var text = e.detail.value;
+        var that = this;
+        var textSpaceCnt = 0;
+        this.setData({
+            sendText: text
+        });
+        for ( var i = 0; i < text.length; i ++ ){   //如果输入的全部是空格
+            if ( text[i] == ' '){
+                textSpaceCnt ++;
+            }
+        }
+        if (text != '' && textSpaceCnt != text.length) {
+            //输入内容后按钮可以按下
+            this.setData({
+                isSendMsgBtnDisabled: false
+            });
+        } else {
+            this.setData({
+                isSendMsgBtnDisabled: true
+            });
+        }
+    },
 
+    /*  清空发送框，禁止发送按钮
+    * */
+    clearTextAndBanSend: function () {
+        this.setData({
+            inputMsg: '',   //清空对话框
+            isSendMsgBtnDisabled: true //发送按钮禁止
+        })
+    },
+
+    /*  点击清除文本
+     * */
+    clearMsgTap: function () {
+        this.clearTextAndBanSend();
+    },
+
+    /*  点击了信息发送
+     * */
+    sendMsgTap: function (e) {
+        var that = this;
+        var text = that.data.sendText;  //获取文本
+        var talk = that.data.talk;
+        talk.push({
+            isBot: false,
+            sentence: text
+        });    //压入话语
+        that.setData({
+            talk: talk
+        });
+        this.talkToBot(text, app.globalData.userInfo.nickName, function (data) {
+            var text = data.data.showapi_res_body.text;
+            if (text == '' || text == undefined || text == ' ') {   //如果返回错误数据
+                text = '?';
+            }
+            talk.push({
+                isBot: true,
+                sentence: text
+            });    //压入话语
+            that.setData({
+                talk: talk,
+                scrollTop: 9999 //版面滚动到底部
+            });
+        });
+        that.clearTextAndBanSend();
     }
 });

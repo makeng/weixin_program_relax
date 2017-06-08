@@ -12,15 +12,11 @@ App({
      * */
     getUserInfo: function (cb) {
         var that = this;
-        console.log('调用');
         if (this.globalData.userInfo) {
             typeof cb == "function" && cb(this.globalData.userInfo);
-            console.log('失败')
         } else {
-            console.log('开始获取用户信息');
             wx.login({      //调用登录接口
                 success: function () {
-                    console.log('登录成功');
                     wx.getUserInfo({
                         success: function (res) {
                             that.globalData.userInfo = res.userInfo;

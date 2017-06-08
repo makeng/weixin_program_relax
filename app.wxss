@@ -42,4 +42,5 @@ page,
   border: 1px solid #aaa;
   box-sizing: content-box;
   height: 100%;
+  width: 550rpx;
 }
