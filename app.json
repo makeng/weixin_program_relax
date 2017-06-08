@@ -1,8 +1,8 @@
 {
   "pages":[
+    "pages/talking_bot/talking_bot",
     "pages/funny_img/funny_img",
-    "pages/funny_gif/funny_gif",
-    "pages/talking_bot/talking_bot"
+    "pages/funny_gif/funny_gif"
   ],
   "window":{
     "backgroundTextStyle":"light",

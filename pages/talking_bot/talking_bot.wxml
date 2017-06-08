@@ -1,3 +1,24 @@
 <view class="page">
-
+    <!--聊天框-->
+    <view class="talk">
+        <!--一个话框-->
+        <view class="talk-box" wx:for="{{talk}}" wx:key="*this">
+            <image class="head {{item.isBot? 'head-bot':'head-user'}}"
+                   src="{{item.isBot? '../../img/head_bot.png':userHead}}"></image>
+            <view class="sentence {{item.isBot? 'sentence-bot':'sentence-user'}}">
+                {{item.sentence}}
+                <view></view>
+            </view>
+        </view>
+        <view class="talk-box-extend"></view>
+    </view>
+    <!--发送框-->
+    <view class="send">
+        <!--文字框-->
+        <view class="send-text">
+            <input type="text" placeholder="请输入文字"/>
+            <button><image src="../../img/icon_close.png" mode="aspectFit"></image></button>
+        </view>
+        <button class="send-btn">发送</button>
+    </view>
 </view>

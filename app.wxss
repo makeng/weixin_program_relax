@@ -1,6 +1,10 @@
 /**weUI库**/
 @import 'weui.wxss';
 /**app.wxss**/
+page,
+.page{
+  height: 100%;
+}
 .container {
   height: 100%;
   box-sizing: border-box;
