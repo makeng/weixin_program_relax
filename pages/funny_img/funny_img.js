@@ -3,10 +3,11 @@
 var app = getApp();
 
 Page({
+    /*-------------------------------------------- 数据 ----------------------------------------------*/
     data: {
         articleList: []
     },
-
+    /*-------------------------------------------- 绑定函数 ----------------------------------------------*/
     onLoad: function () {
         var that = this;
         wx.request({    //获取搞笑图文
@@ -24,8 +25,11 @@ Page({
             }
         });
     },
-
-    tabClick: function (e) {
-
+    /*分享设置*/
+    onShareAppMessage: function () {
+        return {
+            title: '轻松一哈-搞笑图片',
+            path: '/pages/funny_img/funny_img'
+        }
     }
 });

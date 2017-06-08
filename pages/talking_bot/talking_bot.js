@@ -3,6 +3,7 @@
 var app = getApp();
 
 Page({
+    /*-------------------------------------------- 数据 ----------------------------------------------*/
     data: {
         talk: [{
             isBot: true,
@@ -15,16 +16,7 @@ Page({
         userHead: ''    //用户头像
     },
 
-    onLoad: function () {
-        var that = this;
-        //加载用户头像
-        app.getUserInfo(function (data) {
-            that.setData({
-                userHead: data.avatarUrl
-            })
-        });
-    },
-
+    /*-------------------------------------------- 自定义函数 ----------------------------------------------*/
     /*  给聊天机器人发送聊天
      *   @param info聊天语句 id对应用户
      * */
@@ -42,7 +34,38 @@ Page({
             }
         });
     },
-
+    /*  清空发送框，禁止发送按钮
+     * */
+    clearTextAndBanSend: function () {
+        this.setData({
+            inputMsg: '',   //清空对话框
+            isSendMsgBtnDisabled: true //发送按钮禁止
+        })
+    },
+    /*  点击清除文本
+     * */
+    clearMsgTap: function () {
+        this.clearTextAndBanSend();
+    },
+    /*-------------------------------------------- 绑定函数 ----------------------------------------------*/
+    /*  窗口加载函数
+     * */
+    onLoad: function () {
+        var that = this;
+        //获取用户头像
+        app.getUserInfo(function (data) {
+            that.setData({
+                userHead: data.avatarUrl
+            })
+        });
+    },
+    /*分享设置*/
+    onShareAppMessage: function () {
+        return {
+            title: '轻松一哈-聊天机器人',
+            path: '/pages/talking_bot/talking_bot'
+        }
+    },
     /*  键盘输入事件
      * */
     bindKeyInput: function (e) {
@@ -52,9 +75,9 @@ Page({
         this.setData({
             sendText: text
         });
-        for ( var i = 0; i < text.length; i ++ ){   //如果输入的全部是空格
-            if ( text[i] == ' '){
-                textSpaceCnt ++;
+        for (var i = 0; i < text.length; i++) {   //如果输入的全部是空格
+            if (text[i] == ' ') {
+                textSpaceCnt++;
             }
         }
         if (text != '' && textSpaceCnt != text.length) {
@@ -68,22 +91,6 @@ Page({
             });
         }
     },
-
-    /*  清空发送框，禁止发送按钮
-    * */
-    clearTextAndBanSend: function () {
-        this.setData({
-            inputMsg: '',   //清空对话框
-            isSendMsgBtnDisabled: true //发送按钮禁止
-        })
-    },
-
-    /*  点击清除文本
-     * */
-    clearMsgTap: function () {
-        this.clearTextAndBanSend();
-    },
-
     /*  点击了信息发送
      * */
     sendMsgTap: function (e) {
